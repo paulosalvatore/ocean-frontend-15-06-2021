@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-function CardItem() {
+function CardItem(props) {
     return (
         <div>
-            <h2>Golum</h2>
-            <img src="https://img.olhardigital.com.br/wp-content/uploads/2019/11/20191119040151-860x450.jpg" />
+            <h2>{props.nome}</h2>
+            <img src={props.imagem} alt="Imagem da Personagem" width="300" />
         </div>
     );
 }
@@ -14,8 +14,14 @@ function CardItem() {
 function ListarItens() {
     return (
         <div>
-            <CardItem />
-            <CardItem />
+            <CardItem
+                nome="Golum"
+                imagem="https://img.olhardigital.com.br/wp-content/uploads/2019/11/20191119040151-860x450.jpg"
+            />
+            <CardItem
+                nome="Frodo"
+                imagem="http://pm1.narvii.com/6308/61e613bfde1b95f18e14afda9fa97215cd2ee6e4_00.jpg"
+            />
         </div>
     );
 }
