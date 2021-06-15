@@ -3,7 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 function CardItem() {
-    return <div>Item</div>;
+    return (
+        <div>
+            <h2>Golum</h2>
+            <img src="https://img.olhardigital.com.br/wp-content/uploads/2019/11/20191119040151-860x450.jpg" />
+        </div>
+    );
 }
 
 function ListarItens() {
