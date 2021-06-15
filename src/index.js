@@ -4,7 +4,7 @@ import "./index.css";
 
 function CardItem(props) {
     return (
-        <div>
+        <div className="card_item">
             <h2>{props.nome}</h2>
             <img src={props.imagem} alt="Imagem da Personagem" width="300" />
         </div>
@@ -13,7 +13,7 @@ function CardItem(props) {
 
 function ListarItens() {
     return (
-        <div>
+        <div className="lista_itens">
             <CardItem
                 nome="Golum"
                 imagem="https://img.olhardigital.com.br/wp-content/uploads/2019/11/20191119040151-860x450.jpg"
