@@ -5,10 +5,23 @@ import "./index.css";
 
 function CardItem(props) {
     return (
-        <div className="card_item">
-            <h2>{props.item.nome}</h2>
-            <img src={props.item.imagem} alt={props.item.nome} width="300" />
-        </div>
+        <Route
+            render={({ history }) => (
+                <div
+                    className="card_item"
+                    onClick={() => {
+                        history.push("/visualizar/" + props.item._id);
+                    }}
+                >
+                    <h2>{props.item.nome}</h2>
+                    <img
+                        src={props.item.imagem}
+                        alt={props.item.nome}
+                        width="300"
+                    />
+                </div>
+            )}
+        />
     );
 }
 
@@ -49,10 +62,56 @@ class ListarItens extends React.Component {
     }
 }
 
+class VisualizarItem extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.id = this.props.match.params.id;
+
+        this.state = {
+            item: {},
+        };
+    }
+
+    async componentDidMount() {
+        const request = await fetch(
+            "https://backend-flexivel.herokuapp.com/" + this.id,
+            {
+                headers: new Headers({
+                    Authorization: "profpaulo.salvatore",
+                }),
+            }
+        );
+
+        const json = await request.json();
+
+        // 2 - Atualiza o estado
+        this.setState({
+            item: json,
+        });
+    }
+
+    render() {
+        return (
+            <div className="card_item">
+                <h2>{this.state.item.nome}</h2>
+                <img
+                    src={this.state.item.imagem}
+                    alt={this.state.item.nome}
+                    width="300"
+                />
+                <div>{this.state.item.descricao}</div>
+            </div>
+        );
+    }
+}
+
 function App() {
     return (
         <Switch>
-            <Route path="/" component={ListarItens} />
+            <Route path="/" exact={true} component={ListarItens} />
+
+            <Route path="/visualizar/:id" component={VisualizarItem} />
         </Switch>
     );
 }
