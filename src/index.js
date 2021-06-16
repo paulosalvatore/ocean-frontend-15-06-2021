@@ -22,8 +22,6 @@ class ListarItens extends React.Component {
     }
 
     async componentDidMount() {
-        console.log("Componente ListarItens construído.");
-
         const request = await fetch("https://backend-flexivel.herokuapp.com/", {
             headers: new Headers({
                 Authorization: "profpaulo.salvatore",
@@ -36,8 +34,6 @@ class ListarItens extends React.Component {
         this.setState({
             itens: json,
         });
-
-        console.log(json);
     }
 
     render() {
