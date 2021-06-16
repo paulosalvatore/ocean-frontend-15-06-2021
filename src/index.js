@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./index.css";
 
 function CardItem(props) {
@@ -49,12 +50,18 @@ class ListarItens extends React.Component {
 }
 
 function App() {
-    return <ListarItens />;
+    return (
+        <Switch>
+            <Route path="/" component={ListarItens} />
+        </Switch>
+    );
 }
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById("root")
 );
