@@ -24,8 +24,12 @@ const itens = [
 function CardItem(props) {
     return (
         <div className="card_item">
-            <h2>{props.nome}</h2>
-            <img src={props.imagem} alt="Imagem da Personagem" width="300" />
+            <h2>{props.item.nome}</h2>
+            <img
+                src={props.item.imagem}
+                alt="Imagem da Personagem"
+                width="300"
+            />
         </div>
     );
 }
@@ -34,7 +38,7 @@ function ListarItens() {
     return (
         <div className="lista_itens">
             {itens.map(item => (
-                <CardItem nome={item.nome} imagem={item.imagem} />
+                <CardItem item={item} />
             ))}
         </div>
     );
