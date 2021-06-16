@@ -21,27 +21,37 @@ const itens = [
     },
 ];
 
+console.log(JSON.stringify(itens));
+
 function CardItem(props) {
     return (
         <div className="card_item">
             <h2>{props.item.nome}</h2>
-            <img
-                src={props.item.imagem}
-                alt="Imagem da Personagem"
-                width="300"
-            />
+            <img src={props.item.imagem} alt={props.item.nome} width="300" />
         </div>
     );
 }
 
-function ListarItens() {
-    return (
-        <div className="lista_itens">
-            {itens.map(item => (
-                <CardItem item={item} />
-            ))}
-        </div>
-    );
+class ListarItens extends React.Component {
+    async componentDidMount() {
+        console.log("Componente ListarItens construído.");
+
+        const request = await fetch("https://pokeapi.co/api/v2/pokemon");
+
+        const json = await request.json();
+
+        console.log(json);
+    }
+
+    render() {
+        return (
+            <div className="lista_itens">
+                {itens.map((item, index) => (
+                    <CardItem item={item} key={index} />
+                ))}
+            </div>
+        );
+    }
 }
 
 function App() {
